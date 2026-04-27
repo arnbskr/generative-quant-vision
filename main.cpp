@@ -18,10 +18,13 @@ int main() {
     std::vector<torch::jit::IValue> inputs;
     inputs.push_back(torch::rand({1, 1, 20, 20}));
 
-    // Mesure de la latence d'inference
+    // On fait tourner le modèle une fois "à vide" pour compiler le graphe JIT
+    module.forward(inputs);
+
+    // Mesure de la vraie latence d'inference (Crucial en HFT)
     auto start = std::chrono::high_resolution_clock::now();
     
-    // Execution du modele (Forward pass)
+    // Execution du modele (Vraie passe)
     at::Tensor output = module.forward(inputs).toTensor();
     
     auto end = std::chrono::high_resolution_clock::now();
