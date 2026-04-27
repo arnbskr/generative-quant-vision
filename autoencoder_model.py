@@ -74,3 +74,29 @@ if __name__ == "__main__":
     print(f"\nForme du tenseur d'entrée : {test_tensor.shape}")
     print(f"Forme du tenseur de sortie : {output.shape}") 
     # La sortie doit être strictement identique à l'entrée (32, 1, 20, 20)
+
+class GAF_Classifier(nn.Module):
+    def __init__(self, pretrained_autoencoder):
+        super(GAF_Classifier, self).__init__()
+        
+        # On récupère l'encodeur de l'auto-encodeur entraîné
+        self.feature_extractor = pretrained_autoencoder.encoder
+        
+        # On gèle les poids de l'encodeur
+        for param in self.feature_extractor.parameters():
+            param.requires_grad = False
+            
+        # On ajoute la tête de classification (MLP), l'encodeur sort un tenseur de (32 filtres, 5, 5)
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(32 * 5 * 5, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 1),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        features = self.feature_extractor(x)
+        output = self.classifier(features)
+        return output
