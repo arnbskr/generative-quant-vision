@@ -1,0 +1,50 @@
+# Dossiers virtuels
+venv/
+env/
+.env
+
+# Fichiers de cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Fichiers de poids PyTorch
+*.pth
+*.pt
+*.onnx
+
+# Dossier de compilation C++/CMake
+build/
+
+# Fichiers CMake temporaires
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# API LibTorch
+libtorch/
+*.zip
+*.tar.gz
+
+# Datasets ou historiques téléchargés
+*.csv
+*.dat
+data/
+
+# Logs Streamlit ou autres
+*.log
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDEs (VSCode, PyCharm, etc.)
+.vscode/
+.idea/
+*.swp
