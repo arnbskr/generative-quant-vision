@@ -54,7 +54,7 @@ Simulation de scénarios de stress-tests : génération de variations réalistes
 ### 1. Environnement Python (Recherche & Entraînement)
 ```bash
 # Clonage et installation des dépendances
-git clone [https://github.com/arnbskr/generative-quant-vision.git](https://github.com/arnbskr/generative-quant-vision.git)
+git clone https://github.com/arnbskr/generative-quant-vision.git
 cd generative-quant-vision
 python -m venv venv
 source venv/bin/activate  # Sur Windows: venv\Scripts\activate
